@@ -8,11 +8,10 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
 
 - [System Configuration](#system-configuration)
   - [Windows Activation](#windows-activation)
-  - [Codecs Installation](#codecs-installation)
   - [Power Management](#power-management)
     - [Disable Hibernation](#disable-hibernation)
-    - [Disable Random Awake in Sleep Mode](#disable-random-awake-in-sleep-mode)
-  - [Time Settings](#time-settings)
+    - [Disable random awake in sleep mode](#disable-random-awake-in-sleep-mode)
+  - [Time settings](#time-settings)
 - [Security](#security)
   - [PowerShell Security](#powershell-security)
 - [Development Environment](#development-environment)
@@ -23,7 +22,7 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
   - [Node.JS Setup](#nodejs-setup)
     - [Installation](#installation-1)
     - [Global npm packages](#global-npm-packages)
-  - [WSL2 Configuration](#wsl2-configuration)
+  - [Windows Subsystem for Linux](#windows-subsystem-for-linux)
     - [Installation](#installation-2)
     - [List distros available to install](#list-distros-available-to-install)
     - [Install Distros](#install-distros)
@@ -48,13 +47,11 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
 ## System Configuration
 
 ### Windows Activation
-For Windows activation, use the official Microsoft Activation Scripts from the massgravel repository. This provides a reliable and secure method to activate Windows 11:
-https://github.com/massgravel/Microsoft-Activation-Scripts
 
-### Codecs Installation
-Install essential video codecs from Microsoft Store to ensure proper playback of various media formats:
-- HEVC (High Efficiency Video Coding): `ms-windows-store://pdp/?ProductId=9n4wgh0z6vhq`
-- AV1 (AOMedia Video 1): `ms-windows-store://pdp/?ProductId=9MVZQVXJBQ9V`
+<img src="https://massgrave.dev/img/logo_small.png" alt="MAS Logo" align="right">
+
+For Windows activation, use the official Microsoft Activation Scripts from the massgravel repository. This provides a reliable and secure method to activate Windows 11:
+https://massgrave.dev/
 
 ### Power Management
 
@@ -64,7 +61,7 @@ Disable hibernation to free up disk space and improve system performance:
 powercfg.exe /hibernate off
 ```
 
-#### Disable Random Awake in Sleep Mode
+#### Disable random awake in sleep mode
 Prevent unwanted system wake-ups by identifying and disabling devices that can wake the system from sleep:
 
 List devices that can wake the system:
@@ -77,7 +74,7 @@ Disable wake for specific device:
 powercfg /devicedisablewake "Device Name"
 ```
 
-### Time Settings
+### Time settings
 For systems with dual-boot (Windows + Linux), configure universal time to prevent time synchronization issues between operating systems:
 
 Enable universal time:
@@ -100,7 +97,7 @@ Configure PowerShell execution policy to allow running local scripts while maint
 Set-ExecutionPolicy RemoteSigned
 ```
 
-Update PowerShell help files for better command documentation:
+(optional) Update PowerShell help files for better command documentation:
 ```powershell
 Update-Help -ErrorAction Ignore
 ```
@@ -109,6 +106,8 @@ Update-Help -ErrorAction Ignore
 ## Development Environment
 
 ### Visual Studio Code
+
+<img src="https://cdn.svgporn.com/logos/visual-studio-code.svg" align="right" width="25%">
 
 #### Installation
 Install Visual Studio Code using WinGet package manager:
@@ -137,6 +136,8 @@ ForEach ($extension in @(
 
 ### Node.JS Setup
 
+<img src="https://cdn.svgporn.com/logos/nodejs-icon.svg" align="right" width="25%">
+
 #### Installation
 Install the Long Term Support (LTS) version of Node.js for stable development:
 ```powershell
@@ -153,7 +154,9 @@ $packages = @(
 > [!IMPORTANT]
 > After installing Node.js, restart the terminal to ensure proper environment variable updates before installing npm packages.
 
-### WSL2 Configuration
+### Windows Subsystem for Linux
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Windows_Subsystem_for_Linux_logo.png" align="right" width="25%">
 
 #### Installation
 Install WSL2 with Debian as the default distribution:
@@ -250,6 +253,8 @@ code %SystemRoot%\System32\drivers\etc\hosts
 ```
 
 ## Package Management
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Windows_Package_Manager_logo.png" align="right" width="25%">
 
 ### WinGet Usage
 
