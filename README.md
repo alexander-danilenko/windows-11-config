@@ -19,6 +19,11 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
     - [Installation](#installation)
     - [Configuration](#configuration)
     - [Recommended Extensions](#recommended-extensions)
+  - [Github Copilot](#github-copilot)
+    - [Github CLI Installation](#github-cli-installation)
+    - [Authenticate with Github](#authenticate-with-github)
+    - [Install the Copilot Extension for Github CLI](#install-the-copilot-extension-for-github-cli)
+    - [Example Usage](#example-usage)
   - [Node.JS Setup](#nodejs-setup)
     - [Installation](#installation-1)
     - [Global npm packages](#global-npm-packages)
@@ -132,6 +137,42 @@ ForEach ($extension in @(
     "tyriar.lorem-ipsum"                 # Lorem Ipsum text generator
     "yzhang.markdown-all-in-one"         # Markdown editing and preview tools
 )) { code --install-extension $extension --force }
+```
+
+### Github Copilot
+
+Github Copilot can be used directly from the command line via the Github CLI and its Copilot extension. This allows you to get AI-powered code suggestions and answers without leaving your terminal.
+
+#### Github CLI Installation
+
+Install the Github CLI tool, which is required to use Copilot from the command line:
+```powershell
+winget install --id GitHub.cli
+```
+
+#### Authenticate with Github
+
+After installing the CLI, you need to authenticate it with your Github account:
+
+```powershell
+gh auth login
+```
+
+> [!NOTE]
+> If you just installed the CLI, you may need to restart your terminal before the `gh` command becomes available.
+
+#### Install the Copilot Extension for Github CLI
+
+Add the Copilot extension to your Github CLI to enable AI-powered code suggestions:
+```powershell
+gh extension install github/gh-copilot
+```
+
+#### Example Usage
+
+Once installed and authenticated, you can use Copilot from the command line. For example, to get a code suggestion for disabling hibernation in PowerShell:
+```powershell
+gh copilot suggest How to disable hibernation using powershell?
 ```
 
 ### Node.JS Setup
