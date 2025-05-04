@@ -273,6 +273,7 @@ ForEach ($item in @(
   "CodecGuide.K-LiteCodecPack.Mega" # Media codec pack
   "HandBrake.HandBrake"             # Video transcoder
   "9NMZLZ57R3T7"                    # MS HEVC Video Extensions
+  "9MVZQVXJBQ9V"                    # MS AV1 Video Extensions
   "9P1J8S7CCWWT"                    # Microsoft Clipchamp
   "XnSoft.XnViewMP"                 # Image viewer
   "XPDM1ZW6815MQM"                  # VLC
