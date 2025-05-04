@@ -24,6 +24,7 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
 - [Package Management](#package-management)
   - [WinGet Usage](#winget-usage)
   - [Common Applications](#common-applications)
+  - [Windows Store Apps](#windows-store-apps)
 - [Troubleshooting](#troubleshooting)
 - [Environment Variables](#environment-variables)
 
@@ -258,6 +259,37 @@ ForEach ($item in @(
   "TrackerSoftware.PDF-XChangePRO" # PDF editor
 )) { winget install --id $item --accept-source-agreements }
 ```
+
+### Windows Store Apps
+Below is a list of recommended Windows Store applications with their direct links:
+
+| App Name | Store URL |
+|----------|-----------|
+| 1Password - Password Manager | https://apps.microsoft.com/detail/xp99c9g0krdz27 |
+| Brave Browser | https://apps.microsoft.com/detail/xp8c9qzms2pc1t |
+| ChatGPT | https://apps.microsoft.com/detail/9nt1r1c2hh7j |
+| Cover - Comic Reader | https://apps.microsoft.com/detail/9wzdncrfj9w7 |
+| Discord | https://apps.microsoft.com/detail/xpdc2rh70k22mn |
+| DjVu Book Reader | https://apps.microsoft.com/detail/9p62zg8ldzzf |
+| FBReader | https://apps.microsoft.com/detail/9pmz94127m4g |
+| Microsoft Clipchamp | https://apps.microsoft.com/detail/9p1j8s7ccwwt |
+| Microsoft PC Manager | https://apps.microsoft.com/detail/9pm860492szd |
+| Mozilla Firefox | https://apps.microsoft.com/detail/9nzvdkpmr9rd |
+| Mozilla Thunderbird Email | https://apps.microsoft.com/detail/9pm5vm1s3vmq |
+| MS HEVC Video Extensions | https://apps.microsoft.com/detail/9nmzlz57r3t7 |
+| Netflix | https://apps.microsoft.com/detail/9wzdncrfj3tj |
+| OneCommander | https://apps.microsoft.com/detail/9nblggh4s79b |
+| PDF-XChange Editor | https://apps.microsoft.com/detail/xpdf9vl4d5xr9w |
+| Rufus | https://apps.microsoft.com/detail/9pc3h3v7q9ch |
+| Slack | https://apps.microsoft.com/detail/9wzdncrdk3wp |
+| Spotify | https://apps.microsoft.com/detail/9ncbcszsjrsb |
+| Telegram | https://apps.microsoft.com/detail/9nztwsqntd0s |
+| Viber | https://apps.microsoft.com/detail/xpfm5p5kdwf0jp |
+| Visual Studio Code | https://apps.microsoft.com/detail/xp9khm4bk9fz7q |
+| VLC | https://apps.microsoft.com/detail/xpdm1zw6815mqm |
+| Wise Program Uninstaller | https://apps.microsoft.com/detail/xp89572q9j4225 |
+| Wise Registry Cleaner | https://apps.microsoft.com/detail/xpdls1xbtxvpp4 |
+| Xbox Accessories | https://apps.microsoft.com/detail/9nblggh30xj3 |
 
 ## Troubleshooting
 
