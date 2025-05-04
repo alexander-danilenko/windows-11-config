@@ -219,77 +219,75 @@ Install essential applications for development, productivity, and system managem
 ```powershell
 ForEach ($item in @(
   # Internet
-  "AgileBits.1Password"          # Password management
-  "Discord.Discord"              # Communication platform
-  "Google.Chrome"                # Web browser
-  "Mozilla.Firefox"              # Web browser
-  "Notion.Notion"                # Note-taking and collaboration
+  "XP99C9G0KRDZ27"          # 1Password
+  "XP8C9QZMS2PC1T" # Brave Browser
+  "XPDC2RH70K22MN"              # Discord
+  "Google.Chrome"                # Google Chrome
+  "9NZVDKPMR9RD"              # Mozilla Firefox
+  "Notion.Notion"                # Notion
   "qBittorrent.qBittorrent"      # Torrent client
-  "ProtonTechnologies.ProtonVPN" # VPN service
-  "SlackTechnologies.Slack"      # Team communication
-  "Telegram.TelegramDesktop"     # Messaging app
-  "Viber.Viber"                  # Messaging app
+  "ProtonTechnologies.ProtonVPN" # Proton VPN
+  "9WZDNCRDK3WP"      # Slack
+  "9NZTWSQNTD0S"     # Telegram
+  "XPFM5P5KDWF0JP"                  # Viber
+
+  # AI
+  "9NT1R1C2HH7J" # ChatGPT
+  "Anthropic.Claude" # Claude.ai
 
   # System
-  "7zip.7zip"                    # File archiver
-  "CrystalDewWorld.CrystalDiskInfo" # Disk health monitoring
-  "CrystalDewWorld.CrystalDiskMark" # Disk performance testing
+  "CrystalDewWorld.CrystalDiskInfo" # CrystalDiskInfo
+  "CrystalDewWorld.CrystalDiskMark" # CrystalDiskMark
   "CrystalRich.LockHunter"       # File unlocker
   "namazso.OpenHashTab"          # File hash calculator
-  "REALiX.HWiNFO"               # System information
-  "Rufus.Rufus"                  # USB bootable media creator
-  "Synology.DriveClient"         # Cloud storage sync
-  "TeamViewer.TeamViewer"        # Remote access
+  "REALiX.HWiNFO"                # System information
+  "9PC3H3V7Q9CH"                # Rufus
+  "Synology.DriveClient"         # Synology Drive
   "WinDirStat.WinDirStat"        # Disk usage analyzer
 
   # Media
   "CodecGuide.K-LiteCodecPack.Mega" # Media codec pack
   "HandBrake.HandBrake"          # Video transcoder
   "XnSoft.XnViewMP"             # Image viewer
+  "XPDM1ZW6815MQM"                # VLC
+  "9nmzlz57r3t7"                # MS HEVC Video Extensions
+  "9P1J8S7CCWWT" # Microsoft Clipchamp
+
 
   # Development
   "Git.Git"                      # Version control
   "JetBrains.Toolbox"            # JetBrains IDE manager
-  "Microsoft.VisualStudioCode"   # Code editor
+  "XP9KHM4BK9FZ7Q"   # VSCode
   "OpenJS.NodeJS.LTS"            # JavaScript runtime
   "Python.Python.3"              # Python interpreter
+  "Anysphere.Cursor" # Cursor AI code editor
 
   # Office
   "ONLYOFFICE.DesktopEditors"    # Office suite
-  "TrackerSoftware.PDF-XChangePRO" # PDF editor
+  "XPDF9VL4D5XR9W" # PDF-XChange Editor
+  "9WZDNCRFJ9W7" # Cover - Comic Reader
+  "9P62ZG8LDZZF" # DjVu Book Reader
+  "9PMZ94127M4G" # FBReader
+  "9PM5VM1S3VMQ" # Mozilla Thunderbird Email
+
+  # Entertainment
+  "9wzdncrfj3tj"                # Netflix
+  "9ncbcszsjrsb"                # Spotify
+
+  # Utilities
+  "9NBLGGH4S79B"                # OneCommander
+  "9NBLGGH30XJ3"                # Xbox Accessories
+  "9P1J8S7CCWWT"                # Microsoft Clipchamp
+  "9PM860492SZD"                # Microsoft PC Manager
+  "9PMZ94127M4G"                # FBReader
+  "9P62ZG8LDZZF"                # DjVu Book Reader
+  "9WZDNCRFJ9W7"                # Cover - Comic Reader
+  "9NT1R1C2HH7J"                # ChatGPT
+  "XP8C9QZMS2PC1T"              # Brave Browser
+  "XP89572Q9J4225"              # Wise Program Uninstaller
+  "XPDLS1XBTXVPP4"              # Wise Registry Cleaner
 )) { winget install --id $item --accept-source-agreements }
 ```
-
-### Windows Store Apps
-Below is a list of recommended Windows Store applications with their direct links:
-
-| App Name | Store URL |
-|----------|-----------|
-| 1Password - Password Manager | https://apps.microsoft.com/detail/xp99c9g0krdz27 |
-| Brave Browser | https://apps.microsoft.com/detail/xp8c9qzms2pc1t |
-| ChatGPT | https://apps.microsoft.com/detail/9nt1r1c2hh7j |
-| Cover - Comic Reader | https://apps.microsoft.com/detail/9wzdncrfj9w7 |
-| Discord | https://apps.microsoft.com/detail/xpdc2rh70k22mn |
-| DjVu Book Reader | https://apps.microsoft.com/detail/9p62zg8ldzzf |
-| FBReader | https://apps.microsoft.com/detail/9pmz94127m4g |
-| Microsoft Clipchamp | https://apps.microsoft.com/detail/9p1j8s7ccwwt |
-| Microsoft PC Manager | https://apps.microsoft.com/detail/9pm860492szd |
-| Mozilla Firefox | https://apps.microsoft.com/detail/9nzvdkpmr9rd |
-| Mozilla Thunderbird Email | https://apps.microsoft.com/detail/9pm5vm1s3vmq |
-| MS HEVC Video Extensions | https://apps.microsoft.com/detail/9nmzlz57r3t7 |
-| Netflix | https://apps.microsoft.com/detail/9wzdncrfj3tj |
-| OneCommander | https://apps.microsoft.com/detail/9nblggh4s79b |
-| PDF-XChange Editor | https://apps.microsoft.com/detail/xpdf9vl4d5xr9w |
-| Rufus | https://apps.microsoft.com/detail/9pc3h3v7q9ch |
-| Slack | https://apps.microsoft.com/detail/9wzdncrdk3wp |
-| Spotify | https://apps.microsoft.com/detail/9ncbcszsjrsb |
-| Telegram | https://apps.microsoft.com/detail/9nztwsqntd0s |
-| Viber | https://apps.microsoft.com/detail/xpfm5p5kdwf0jp |
-| Visual Studio Code | https://apps.microsoft.com/detail/xp9khm4bk9fz7q |
-| VLC | https://apps.microsoft.com/detail/xpdm1zw6815mqm |
-| Wise Program Uninstaller | https://apps.microsoft.com/detail/xp89572q9j4225 |
-| Wise Registry Cleaner | https://apps.microsoft.com/detail/xpdls1xbtxvpp4 |
-| Xbox Accessories | https://apps.microsoft.com/detail/9nblggh30xj3 |
 
 ## Troubleshooting
 
