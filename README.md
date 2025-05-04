@@ -1,10 +1,10 @@
-<h1>>Windows 11 Configuration Guide</h1>
+<h1 align="center">Windows 11 Configuration Guide</h1>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Windows_10x_Icon.png" width="30%" align="right" />
 
 A comprehensive guide for configuring and optimizing Windows 11 for development, productivity, and security. This guide covers essential system settings, development environment setup, network configuration, and package management.
 
-<h2>Table of Contents</h2>
+<strong>Table of Contents:</strong>
 
 - [System Configuration](#system-configuration)
   - [Windows Activation](#windows-activation)
