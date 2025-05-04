@@ -340,6 +340,7 @@ ForEach ($item in @(
   "WinDirStat.WinDirStat"           # WinDirStat: Disk usage analyzer
 
   # Utilities
+  "7zip.7zip"       # 7-Zip
   #"9NBLGGH4S79B"   # OneCommander
   #"9NBLGGH30XJ3"   # Xbox Accessories
   "9PM860492SZD"    # Microsoft PC Manager
