@@ -1,31 +1,46 @@
-# Windows 11 Configuration Guide
+<h1>>Windows 11 Configuration Guide</h1>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Windows_10x_Icon.png" width="30%" align="right" />
 
 A comprehensive guide for configuring and optimizing Windows 11 for development, productivity, and security. This guide covers essential system settings, development environment setup, network configuration, and package management.
 
-## Table of Contents
+<h2>Table of Contents</h2>
 
 - [System Configuration](#system-configuration)
   - [Windows Activation](#windows-activation)
   - [Codecs Installation](#codecs-installation)
   - [Power Management](#power-management)
+    - [Disable Hibernation](#disable-hibernation)
+    - [Disable Random Awake in Sleep Mode](#disable-random-awake-in-sleep-mode)
   - [Time Settings](#time-settings)
 - [Security](#security)
-  - [Windows Defender Configuration](#windows-defender-configuration)
   - [PowerShell Security](#powershell-security)
 - [Development Environment](#development-environment)
   - [Visual Studio Code](#visual-studio-code)
-  - [Node.js Setup](#nodejs-setup)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+    - [Recommended Extensions](#recommended-extensions)
+  - [Node.JS Setup](#nodejs-setup)
+    - [Installation](#installation-1)
+    - [Global npm packages](#global-npm-packages)
   - [WSL2 Configuration](#wsl2-configuration)
+    - [Installation](#installation-2)
+    - [List distros available to install](#list-distros-available-to-install)
+    - [Install Distros](#install-distros)
+    - [List Installed Versions](#list-installed-versions)
+    - [Get Distro IP Address](#get-distro-ip-address)
 - [Network Configuration](#network-configuration)
-  - [Network Shares](#network-shares)
+  - [Network Credentials](#network-credentials)
   - [Hosts File Management](#hosts-file-management)
 - [Package Management](#package-management)
   - [WinGet Usage](#winget-usage)
+    - [Search for Packages](#search-for-packages)
+    - [List Installed Apps](#list-installed-apps)
+    - [Update Apps](#update-apps)
   - [Common Applications](#common-applications)
-  - [Windows Store Apps](#windows-store-apps)
 - [Troubleshooting](#troubleshooting)
+  - [Firefox Video Freeze](#firefox-video-freeze)
+  - [Common Commands](#common-commands)
 - [Environment Variables](#environment-variables)
 
 ## System Configuration
@@ -96,7 +111,7 @@ Update-Help -ErrorAction Ignore
 #### Installation
 Install Visual Studio Code using WinGet package manager:
 ```powershell
-winget install Microsoft.VisualStudioCode
+winget install --id XP9KHM4BK9FZ7Q --accept-source-agreements
 ```
 
 #### Configuration
@@ -118,12 +133,19 @@ ForEach ($extension in @(
 )) { code --install-extension $extension --force }
 ```
 
-### Node.js Setup
+### Node.JS Setup
 
 #### Installation
 Install the Long Term Support (LTS) version of Node.js for stable development:
 ```powershell
 winget install --id OpenJS.NodeJS.LTS
+```
+
+#### Global npm packages
+```powershell
+$packages = @(
+    "tldr"
+); npm install --global $packages
 ```
 
 > [!IMPORTANT]
@@ -218,74 +240,67 @@ winget upgrade --all
 Install essential applications for development, productivity, and system management:
 ```powershell
 ForEach ($item in @(
+  # AI
+  "9NT1R1C2HH7J"     # ChatGPT
+  "Anthropic.Claude" # Claude.ai
+
+  # Development
+  "Anysphere.Cursor"  # Cursor AI code editor
+  "Git.Git"           # Git
+  "JetBrains.Toolbox" # JetBrains IDE manager
+  "OpenJS.NodeJS.LTS" # Node.JS runtime
+  "Python.Python.3"   # Python runtime
+  "XP9KHM4BK9FZ7Q"    # Visual Studio Code
+
+  # Entertainment
+  "9wzdncrfj3tj" # Netflix
+  "9ncbcszsjrsb" # Spotify
+
   # Internet
-  "XP99C9G0KRDZ27"          # 1Password
-  "XP8C9QZMS2PC1T" # Brave Browser
-  "XPDC2RH70K22MN"              # Discord
+  "XP99C9G0KRDZ27"               # 1Password
+  "XP8C9QZMS2PC1T"               # Brave Browser
+  "XPDC2RH70K22MN"               # Discord
   "Google.Chrome"                # Google Chrome
-  "9NZVDKPMR9RD"              # Mozilla Firefox
+  "9NZVDKPMR9RD"                 # Mozilla Firefox
   "Notion.Notion"                # Notion
   "qBittorrent.qBittorrent"      # Torrent client
   "ProtonTechnologies.ProtonVPN" # Proton VPN
-  "9WZDNCRDK3WP"      # Slack
-  "9NZTWSQNTD0S"     # Telegram
-  "XPFM5P5KDWF0JP"                  # Viber
+  "9WZDNCRDK3WP"                 # Slack
+  "9NZTWSQNTD0S"                 # Telegram
+  "XPFM5P5KDWF0JP"               # Viber
 
-  # AI
-  "9NT1R1C2HH7J" # ChatGPT
-  "Anthropic.Claude" # Claude.ai
+  # Media
+  "CodecGuide.K-LiteCodecPack.Mega" # Media codec pack
+  "HandBrake.HandBrake"             # Video transcoder
+  "9NMZLZ57R3T7"                    # MS HEVC Video Extensions
+  "9P1J8S7CCWWT"                    # Microsoft Clipchamp
+  "XnSoft.XnViewMP"                 # Image viewer
+  "XPDM1ZW6815MQM"                  # VLC
+
+  # Office
+  "9WZDNCRFJ9W7"                # Cover - Comic Reader
+  "9P62ZG8LDZZF"                # DjVu Book Reader
+  "9PMZ94127M4G"                # FBReader
+  #"9PM5VM1S3VMQ"               # Mozilla Thunderbird Email
+  #"ONLYOFFICE.DesktopEditors"  # Office suite
+  "XPDF9VL4D5XR9W"              # PDF-XChange Editor
 
   # System
   "CrystalDewWorld.CrystalDiskInfo" # CrystalDiskInfo
   "CrystalDewWorld.CrystalDiskMark" # CrystalDiskMark
-  "CrystalRich.LockHunter"       # File unlocker
-  "namazso.OpenHashTab"          # File hash calculator
-  "REALiX.HWiNFO"                # System information
-  "9PC3H3V7Q9CH"                # Rufus
-  "Synology.DriveClient"         # Synology Drive
-  "WinDirStat.WinDirStat"        # Disk usage analyzer
-
-  # Media
-  "CodecGuide.K-LiteCodecPack.Mega" # Media codec pack
-  "HandBrake.HandBrake"          # Video transcoder
-  "XnSoft.XnViewMP"             # Image viewer
-  "XPDM1ZW6815MQM"                # VLC
-  "9nmzlz57r3t7"                # MS HEVC Video Extensions
-  "9P1J8S7CCWWT" # Microsoft Clipchamp
-
-
-  # Development
-  "Git.Git"                      # Version control
-  "JetBrains.Toolbox"            # JetBrains IDE manager
-  "XP9KHM4BK9FZ7Q"   # VSCode
-  "OpenJS.NodeJS.LTS"            # JavaScript runtime
-  "Python.Python.3"              # Python interpreter
-  "Anysphere.Cursor" # Cursor AI code editor
-
-  # Office
-  "ONLYOFFICE.DesktopEditors"    # Office suite
-  "XPDF9VL4D5XR9W" # PDF-XChange Editor
-  "9WZDNCRFJ9W7" # Cover - Comic Reader
-  "9P62ZG8LDZZF" # DjVu Book Reader
-  "9PMZ94127M4G" # FBReader
-  "9PM5VM1S3VMQ" # Mozilla Thunderbird Email
-
-  # Entertainment
-  "9wzdncrfj3tj"                # Netflix
-  "9ncbcszsjrsb"                # Spotify
+  "CrystalRich.LockHunter"          # File unlocker
+  "namazso.OpenHashTab"             # File hash calculator
+  "REALiX.HWiNFO"                   # System information
+  "9PC3H3V7Q9CH"                    # Rufus
+  "Synology.DriveClient"            # Synology Drive
+  "WinDirStat.WinDirStat"           # WinDirStat: Disk usage analyzer
 
   # Utilities
-  "9NBLGGH4S79B"                # OneCommander
-  "9NBLGGH30XJ3"                # Xbox Accessories
-  "9P1J8S7CCWWT"                # Microsoft Clipchamp
-  "9PM860492SZD"                # Microsoft PC Manager
-  "9PMZ94127M4G"                # FBReader
-  "9P62ZG8LDZZF"                # DjVu Book Reader
-  "9WZDNCRFJ9W7"                # Cover - Comic Reader
-  "9NT1R1C2HH7J"                # ChatGPT
-  "XP8C9QZMS2PC1T"              # Brave Browser
-  "XP89572Q9J4225"              # Wise Program Uninstaller
-  "XPDLS1XBTXVPP4"              # Wise Registry Cleaner
+  #"9NBLGGH4S79B"   # OneCommander
+  #"9NBLGGH30XJ3"   # Xbox Accessories
+  "9PM860492SZD"    # Microsoft PC Manager
+  "XP89572Q9J4225"  # Wise Program Uninstaller
+  #"XPDLS1XBTXVPP4" # Wise Registry Cleaner
 )) { winget install --id $item --accept-source-agreements }
 ```
 
