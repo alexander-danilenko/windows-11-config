@@ -2,6 +2,8 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Windows_10x_Icon.png" width="30%" align="right" />
 
+A comprehensive guide for configuring and optimizing Windows 11 for development, productivity, and security. This guide covers essential system settings, development environment setup, network configuration, and package management.
+
 ## Table of Contents
 
 - [System Configuration](#system-configuration)
@@ -28,22 +30,25 @@
 ## System Configuration
 
 ### Windows Activation
-For Windows activation, use the official Microsoft Activation Scripts:
+For Windows activation, use the official Microsoft Activation Scripts from the massgravel repository. This provides a reliable and secure method to activate Windows 11:
 https://github.com/massgravel/Microsoft-Activation-Scripts
 
 ### Codecs Installation
-Install essential codecs from Microsoft Store:
-- HEVC: `ms-windows-store://pdp/?ProductId=9n4wgh0z6vhq`
-- AV1: `ms-windows-store://pdp/?ProductId=9MVZQVXJBQ9V`
+Install essential video codecs from Microsoft Store to ensure proper playback of various media formats:
+- HEVC (High Efficiency Video Coding): `ms-windows-store://pdp/?ProductId=9n4wgh0z6vhq`
+- AV1 (AOMedia Video 1): `ms-windows-store://pdp/?ProductId=9MVZQVXJBQ9V`
 
 ### Power Management
 
 #### Disable Hibernation
+Disable hibernation to free up disk space and improve system performance:
 ```powershell
 powercfg.exe /hibernate off
 ```
 
 #### Disable Random Awake in Sleep Mode
+Prevent unwanted system wake-ups by identifying and disabling devices that can wake the system from sleep:
+
 List devices that can wake the system:
 ```powershell
 powercfg -devicequery wake_armed
@@ -55,7 +60,7 @@ powercfg /devicedisablewake "Device Name"
 ```
 
 ### Time Settings
-For systems with dual-boot (Windows + Linux), configure universal time:
+For systems with dual-boot (Windows + Linux), configure universal time to prevent time synchronization issues between operating systems:
 
 Enable universal time:
 ```powershell
@@ -69,153 +74,116 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformati
 
 ## Security
 
-### Windows Defender Configuration
-Add paths to Windows Defender ignore list:
+### PowerShell Security
+Enhance PowerShell security and functionality with these essential configurations:
+
+Configure PowerShell execution policy to allow running local scripts while maintaining security:
 ```powershell
-ForEach ($item in @(
-  "${env:WINDIR}\System32\drivers\etc\hosts"
-  "D:\Apps"
-  "E:\Install"
-)) { Add-MpPreference -ExclusionPath (Convert-Path -Path $item) }
+Set-ExecutionPolicy RemoteSigned
 ```
 
-### PowerShell Security
-Update PowerShell help:
+Update PowerShell help files for better command documentation:
 ```powershell
 Update-Help -ErrorAction Ignore
 ```
 
-Allow running PowerShell scripts:
-```powershell
-Set-ExecutionPolicy RemoteSigned
-```
 
 ## Development Environment
 
 ### Visual Studio Code
 
 #### Installation
+Install Visual Studio Code using WinGet package manager:
 ```powershell
 winget install Microsoft.VisualStudioCode
 ```
 
 #### Configuration
-Import settings from dotfiles:
+Import settings from dotfiles repository for optimal development experience:
 ```powershell
 Invoke-WebRequest https://raw.githubusercontent.com/alexander-danilenko/dotfiles/main/.config/Code/User/settings.json -OutFile "${env:APPDATA}\Code\User\settings.json"
 ```
 
 #### Recommended Extensions
+Install essential extensions for enhanced development workflow:
 ```powershell
 ForEach ($extension in @(
-    "acarreiro.calculate"                # Calculates inline math expr
-    "amazonwebservices.aws-toolkit-vscode" # AWS toolkit
-    "christian-kohler.path-intellisense" # File path autocomplete
-    "coenraads.bracket-pair-colorizer"   # Bracket Pair Colorizer
-    "dakara.transformer"                 # Text transformations
-    "editorconfig.editorconfig"          # EditorConfig support
-    "esbenp.prettier-vscode"             # Code formatter
-    "golang.go"                          # Golang support
-    "hookyqr.beautify"                   # HTML/JSON beautifier
-    "mhutchie.git-graph"                 # Git graph
-    "mikestead.dotenv"                   # .env support
-    "ms-azuretools.vscode-docker"        # Docker support
-    "ms-python.python"                   # Python support
-    "ms-vscode-remote.remote-ssh"        # SSH support 
-    "tommasov.hosts"                     # Hosts file syntax
-    "tyriar.lorem-ipsum"                 # Lorem Ipsum generator
-    "william-voyek.vscode-nginx"         # nginx.conf support
-    "yzhang.markdown-all-in-one"         # Markdown tools
+    "acarreiro.calculate"                # Inline mathematical expression calculator
+    "editorconfig.editorconfig"          # EditorConfig support for consistent coding styles
+    "mikestead.dotenv"                   # Environment variable management
+    "ms-python.python"                   # Python development environment
+    "tyriar.lorem-ipsum"                 # Lorem Ipsum text generator
+    "yzhang.markdown-all-in-one"         # Markdown editing and preview tools
 )) { code --install-extension $extension --force }
 ```
 
 ### Node.js Setup
 
 #### Installation
+Install the Long Term Support (LTS) version of Node.js for stable development:
 ```powershell
 winget install --id OpenJS.NodeJS.LTS
 ```
 
 > [!IMPORTANT]
-> After installing Node.js, restart the terminal before installing npm packages.
-
-#### Global NPM Packages
-```powershell
-$packages=@(
-  "bower"
-  "eslint"
-  "eslint-config-airbnb"
-  "eslint-config-google"
-  "eslint-config-standard"
-  "eslint-plugin-import"
-  "eslint-plugin-jsx-a11y"
-  "eslint-plugin-node"
-  "eslint-plugin-promise"
-  "eslint-plugin-react"
-  "eslint-plugin-react-hooks"
-  "firebase-tools"
-  "flow"
-  "flow-bin"
-  "gulp"
-  "http-server"
-  "lsp"
-  "snyk"
-  "typescript"
-  "vscode-css-languageserver-bin"
-  "vscode-html-languageserver-bin"
-  "yarn"
-); npm install -g $packages
-```
+> After installing Node.js, restart the terminal to ensure proper environment variable updates before installing npm packages.
 
 ### WSL2 Configuration
 
 #### Installation
+Install WSL2 with Debian as the default distribution:
 ```powershell
 wsl --install --distribution Debian
 wsl --set-default-version 2
 ```
 
-#### List Available Distros
+#### List distros available to install 
+View all available Linux distributions for WSL:
 ```powershell
 wsl --list --online
 ```
 
 > [!IMPORTANT]
-> After WSL installation and before installing any distro, you need to reboot!
+> After WSL installation and before installing any distro, a system reboot is required to ensure proper kernel integration!
 
 #### Install Distros
+Install specific Linux distributions for development:
 ```powershell
 wsl --install --distribution Ubuntu-20.04
 wsl --install --distribution Debian
 ```
 
 #### List Installed Versions
+View detailed information about installed WSL distributions:
 ```powershell
 wsl --list --verbose
 ```
 
 #### Get Distro IP Address
+Retrieve the IP address of a specific WSL distribution:
 ```powershell
 wsl --distribution Ubuntu-20.04 --exec ip route list default
 ```
 
 ## Network Configuration
 
-### Network Shares
+### Network Credentials
+Configure persistent secure credentials:
 ```powershell
-$cred = Get-Credential -Message "Enter NAS User credentials"
-$drives = @{
-    B = "\\192.168.50.123\Books"
-    H = "\\192.168.50.123\Homes\admin"
-    M = "\\192.168.50.123\Music\Музыка"
-    V = "\\192.168.50.123\Videos"
-}; foreach($driveLetter in $drives.keys) {
-  Remove-PSDrive -Name $driveLetter -ErrorAction SilentlyContinue
-  New-PSDrive -Name $driveLetter -Root $drives[$driveLetter] -Persist -PSProvider "FileSystem" -Credential $cred
+$SmbAddresses = @("192.168.50.123", "NetworkStorage")
+$cred = Get-Credential -Message "Enter credentials for NAS SMB access"
+foreach ($address in $SmbAddresses) {
+    # Remove leading backslashes for cmdkey.exe
+    $cmdkeyTarget = $address -replace "^\\\\+", ""
+    # Remove existing Windows Credential
+    cmdkey.exe /delete:$cmdkeyTarget | Out-Null
+    # Add new Windows Credential
+    cmdkey.exe /add:$cmdkeyTarget /user:$($cred.UserName) /pass:$($cred.GetNetworkCredential().Password)
 }
 ```
 
 ### Hosts File Management
+Open the hosts file in Visual Studio Code for easy editing:
 ```powershell
 code %SystemRoot%\System32\drivers\etc\hosts
 ```
@@ -225,72 +193,76 @@ code %SystemRoot%\System32\drivers\etc\hosts
 ### WinGet Usage
 
 > [!NOTE]
-> `winget` app is not available by default. [**App Installer**](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1) needs to be installed first.
+> `winget` app is not available by default. [**App Installer**](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1) needs to be installed first from the Microsoft Store.
 
 #### Search for Packages
+Search for available applications in the WinGet repository:
 ```powershell
 winget search <appName>
 ```
 
 #### List Installed Apps
+View all installed applications managed by WinGet:
 ```powershell
 winget list
 ```
 
 #### Update Apps
+Update all installed applications to their latest versions:
 ```powershell
 winget upgrade --all
 ```
 
 ### Common Applications
+Install essential applications for development, productivity, and system management:
 ```powershell
 ForEach ($item in @(
   # Internet
-  "AgileBits.1Password"
-  "Discord.Discord"
-  "Google.Chrome"
-  "Mozilla.Firefox"
-  "Notion.Notion"
-  "qBittorrent.qBittorrent"
-  "ProtonTechnologies.ProtonVPN"
-  "SlackTechnologies.Slack"
-  "Telegram.TelegramDesktop"
-  "Viber.Viber"
+  "AgileBits.1Password"          # Password management
+  "Discord.Discord"              # Communication platform
+  "Google.Chrome"                # Web browser
+  "Mozilla.Firefox"              # Web browser
+  "Notion.Notion"                # Note-taking and collaboration
+  "qBittorrent.qBittorrent"      # Torrent client
+  "ProtonTechnologies.ProtonVPN" # VPN service
+  "SlackTechnologies.Slack"      # Team communication
+  "Telegram.TelegramDesktop"     # Messaging app
+  "Viber.Viber"                  # Messaging app
 
   # System
-  "7zip.7zip"
-  "CrystalDewWorld.CrystalDiskInfo"
-  "CrystalDewWorld.CrystalDiskMark"
-  "CrystalRich.LockHunter"
-  "namazso.OpenHashTab"
-  "REALiX.HWiNFO"
-  "Rufus.Rufus"
-  "Synology.DriveClient"
-  "TeamViewer.TeamViewer"
-  "WinDirStat.WinDirStat"
+  "7zip.7zip"                    # File archiver
+  "CrystalDewWorld.CrystalDiskInfo" # Disk health monitoring
+  "CrystalDewWorld.CrystalDiskMark" # Disk performance testing
+  "CrystalRich.LockHunter"       # File unlocker
+  "namazso.OpenHashTab"          # File hash calculator
+  "REALiX.HWiNFO"               # System information
+  "Rufus.Rufus"                  # USB bootable media creator
+  "Synology.DriveClient"         # Cloud storage sync
+  "TeamViewer.TeamViewer"        # Remote access
+  "WinDirStat.WinDirStat"        # Disk usage analyzer
 
   # Media
-  "CodecGuide.K-LiteCodecPack.Mega"
-  "HandBrake.HandBrake"
-  "XnSoft.XnViewMP"
+  "CodecGuide.K-LiteCodecPack.Mega" # Media codec pack
+  "HandBrake.HandBrake"          # Video transcoder
+  "XnSoft.XnViewMP"             # Image viewer
 
   # Development
-  "Git.Git"
-  "JetBrains.Toolbox"
-  "Microsoft.VisualStudioCode"
-  "OpenJS.NodeJS.LTS"
-  "Python.Python.3"
+  "Git.Git"                      # Version control
+  "JetBrains.Toolbox"            # JetBrains IDE manager
+  "Microsoft.VisualStudioCode"   # Code editor
+  "OpenJS.NodeJS.LTS"            # JavaScript runtime
+  "Python.Python.3"              # Python interpreter
 
   # Office
-  "ONLYOFFICE.DesktopEditors"
-  "TrackerSoftware.PDF-XChangePRO"
+  "ONLYOFFICE.DesktopEditors"    # Office suite
+  "TrackerSoftware.PDF-XChangePRO" # PDF editor
 )) { winget install --id $item --accept-source-agreements }
 ```
 
 ## Troubleshooting
 
 ### Firefox Video Freeze
-If video freezes in Firefox when running games on a second monitor:
+If video playback freezes in Firefox when running games on a second monitor, follow these steps:
 1. Open `about:config` in Firefox
 2. Set `widget.windows.window_occlusion_tracking.enabled` to `false`
 
@@ -298,7 +270,7 @@ If video freezes in Firefox when running games on a second monitor:
 | Action | Command |
 | ------ | ------- |
 | Disable password prompt on windows load | `netplwiz` |
-| Reset DNS | `ipconfig /flushdns; netsh winsock reset` |
+| Reset DNS and network stack | `ipconfig /flushdns; netsh winsock reset` |
 
 ## Environment Variables
 
