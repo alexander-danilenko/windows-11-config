@@ -29,6 +29,8 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
     - [Install Distros](#install-distros)
     - [List Installed Versions](#list-installed-versions)
     - [Get Distro IP Address](#get-distro-ip-address)
+    - [Access WSL files](#access-wsl-files)
+    - [Access Windows files from WSL](#access-windows-files-from-wsl)
 - [Network Configuration](#network-configuration)
   - [Network Credentials](#network-credentials)
   - [Hosts File Management](#hosts-file-management)
@@ -172,7 +174,7 @@ wsl --list --online
 #### Install Distros
 Install specific Linux distributions for development:
 ```powershell
-wsl --install --distribution Ubuntu-20.04
+wsl --install --distribution Ubuntu-24.04
 wsl --install --distribution Debian
 ```
 
@@ -185,8 +187,44 @@ wsl --list --verbose
 #### Get Distro IP Address
 Retrieve the IP address of a specific WSL distribution:
 ```powershell
-wsl --distribution Ubuntu-20.04 --exec ip route list default
+wsl --distribution Debian --exec ip route list default
 ```
+
+#### Access WSL files
+Access WSL files from Windows Explorer using the following path format:
+```powershell
+\\wsl$\<distro-name>
+```
+
+For example, to access files in the Debian distribution:
+```powershell
+\\wsl$\Debian
+```
+
+You can also access WSL files directly from Windows applications by using the same path format. This is particularly useful for:
+- Opening WSL files in Windows applications
+- Copying files between Windows and WSL
+- Managing WSL files using Windows file managers
+
+> [!NOTE]
+> The WSL filesystem is case-sensitive, unlike Windows. Be mindful of case when accessing files and directories.
+
+#### Access Windows files from WSL
+
+Windows automatically mounts your drives to WSL at the following locations:
+- C: drive → `/mnt/c/`
+- D: drive → `/mnt/d/`
+- E: drive → `/mnt/e/`
+- etc.
+
+To access your Windows files, simply navigate to the appropriate mount point:
+```bash
+cd /mnt/c/
+```
+
+> [!IMPORTANT]
+> - File permissions and ownership in Windows drives are set to `drwxrwxrwx` (`777`) by default
+> - For better performance with Windows files, consider storing project files within the WSL filesystem
 
 ## Network Configuration
 
@@ -215,7 +253,7 @@ code %SystemRoot%\System32\drivers\etc\hosts
 
 ### WinGet Usage
 
-> [!NOTE]
+> [!IMPORTANT]
 > `winget` app is not available by default. [**App Installer**](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1) needs to be installed first from the Microsoft Store.
 
 #### Search for Packages
