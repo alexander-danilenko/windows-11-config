@@ -55,12 +55,27 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
 
 ### Windows Activation
 
+- **What**: Activates Windows 11 using official scripts.
+- **Why**: Activation is required to unlock all features and ensure the OS is genuine and secure.
+- **How**: Use the Microsoft Activation Scripts from the massgravel repository by following the provided link. This method is reliable and secure. Always use official sources to avoid malware. Activation ensures compliance and access to updates.
+
 <img src="https://massgrave.dev/img/logo_small.png" alt="MAS Logo" align="right">
 
 For Windows activation, use the official Microsoft Activation Scripts from the massgravel repository. This provides a reliable and secure method to activate Windows 11:
-https://massgrave.dev/
+
+> https://massgrave.dev/
+
+> [!CAUTION]
+> Even though the activation script is open source, you should always review the script yourself before running it. Never blindly execute scripts from the internet, and ensure you understand what the script will do to your system.
+
+> [!TIP]
+> OEM license keys for Windows can be purchased online for a fraction of the price of the retail box edition. Please do not pirate—buy a legitimate license and support the developers who make Windows possible.
 
 ### Power Management
+
+- **What**: Configures power settings for better performance and control.
+- **Why**: Proper power management can improve system responsiveness, save energy, and prevent unwanted wake-ups.
+- **How**: Disable hibernation to free disk space, and manage devices that can wake the system from sleep.
 
 #### Disable Hibernation
 Disable hibernation to free up disk space and improve system performance:
@@ -82,7 +97,10 @@ powercfg /devicedisablewake "Device Name"
 ```
 
 ### Time settings
-For systems with dual-boot (Windows + Linux), configure universal time to prevent time synchronization issues between operating systems:
+
+- **What**: Synchronizes system time settings, especially for dual-boot setups.
+- **Why**: Prevents time drift and synchronization issues when using both Windows and Linux on the same machine.
+- **How**: Set the system to use universal time with a registry tweak. This ensures both OSes agree on the hardware clock. Use PowerShell commands to enable or disable as needed. Helps avoid confusion and incorrect timestamps.
 
 Enable universal time:
 ```powershell
@@ -97,13 +115,12 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformati
 ## Privacy
 
 ### O&O ShutUp10++
-O&O ShutUp10+ is a free, portable tool that gives you full control over Windows 11 privacy settings. It allows you to quickly disable telemetry, data collection, and other privacy-intrusive features with a single click.
 
-- **Website:** [O&O ShutUp10++](https://www.oo-software.com/en/shutup10)
-- **No installation required:** The tool is portable and does not need to be installed.
-- **Recommended usage:**
-  1. Download and run the tool from the official website.
-  2. Review the list of privacy settings and apply recommended or custom configurations.
+- **What**: A tool to manage and enhance Windows 11 privacy settings.
+- **Why**: Windows 11 collects telemetry and data by default; this tool helps users regain control over their privacy.
+- **How**: Download and run O&O ShutUp10++ without installation. Review and apply recommended privacy settings. Always create a system restore point before making changes. Some settings may impact Windows features, so review carefully.
+
+[O&O ShutUp10++](https://www.oo-software.com/en/shutup10) is a free, portable tool that gives you full control over Windows 11 privacy settings. It allows you to quickly disable telemetry, data collection, and other privacy-intrusive features with a single click.
 
 > [!WARNING]
 > It is **HIGHLY recommended** to create a system restore point before applying any changes with O&O ShutUp10+. This allows you to easily revert your system in case any modifications cause issues or unwanted behavior.
@@ -114,7 +131,10 @@ O&O ShutUp10+ is a free, portable tool that gives you full control over Windows 
 ## Security
 
 ### PowerShell Security
-Enhance PowerShell security and functionality with these essential configurations:
+
+- **What**: Improves PowerShell security and usability.
+- **Why**: Secure PowerShell usage is essential to prevent unauthorized script execution and maintain system integrity.
+- **How**: Set the execution policy to `RemoteSigned` to allow local scripts while blocking unsigned remote scripts. Optionally, update help files for better documentation.
 
 Configure PowerShell execution policy to allow running local scripts while maintaining security:
 ```powershell
@@ -159,7 +179,11 @@ ForEach ($extension in @(
 
 ### Github Copilot
 
-Github Copilot can be used directly from the command line via the Github CLI and its Copilot extension. This allows you to get AI-powered code suggestions and answers without leaving your terminal.
+<img src="https://cdn.svgporn.com/logos/github-copilot.svg" align="right" width="25%">
+
+- **What**: An AI-powered coding assistant that provides code suggestions and answers directly in your terminal or editor.
+- **Why**: Github Copilot accelerates development by offering context-aware code completions, reducing manual coding effort, and helping solve problems faster. Integrating Copilot with the Github CLI brings these benefits to the command line, making it accessible outside the editor.
+- **How**: Install the Github CLI and authenticate with your Github account. Add the Copilot extension to the CLI, then use simple commands to get code suggestions or answers directly in your terminal.
 
 #### Github CLI Installation
 
@@ -217,6 +241,10 @@ $packages = @(
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Windows_Subsystem_for_Linux_logo.png" align="right" width="25%">
 
+- **What**: Enables running Linux distributions "natively" on Windows 11.
+- **Why**: WSL allows developers to use Linux tools and workflows alongside Windows, improving productivity and compatibility for development tasks.
+- **How**: Install WSL2 and your preferred Linux distribution using PowerShell commands. Reboot after installation for proper kernel integration. Access Linux and Windows files seamlessly between environments, and use WSL for development, scripting, and system management tasks.
+
 #### Installation
 Install WSL2 with Debian as the default distribution:
 ```powershell
@@ -236,8 +264,8 @@ wsl --list --online
 #### Install Distros
 Install specific Linux distributions for development:
 ```powershell
-wsl --install --distribution Ubuntu-24.04
 wsl --install --distribution Debian
+wsl --install --distribution Ubuntu-24.04
 ```
 
 #### List Installed Versions
@@ -314,6 +342,10 @@ code %SystemRoot%\System32\drivers\etc\hosts
 ## Package Management
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Windows_Package_Manager_logo.png" align="right" width="25%">
+
+- **What**: Tools and methods for installing, updating, and managing software on Windows 11.
+- **Why**: Efficient package management streamlines software setup, keeps applications up to date, and improves system security and productivity. Using the Microsoft Store as a source is preferable because apps receive faster automatic updates compared to other sources.
+- **How**: Use WinGet and the Microsoft Store to search for, install, and update applications. Always prefer Microsoft Store versions for automatic updates and better integration. Refer to the provided commands for searching, listing, and upgrading packages, and see the curated list of recommended applications for various needs.
 
 ### WinGet Usage
 
