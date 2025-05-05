@@ -12,6 +12,9 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
     - [Disable Hibernation](#disable-hibernation)
     - [Disable random awake in sleep mode](#disable-random-awake-in-sleep-mode)
   - [Time settings](#time-settings)
+  - [Network Configuration](#network-configuration)
+    - [Network Credentials](#network-credentials)
+    - [Hosts File Management](#hosts-file-management)
 - [Privacy](#privacy)
   - [O\&O ShutUp10++](#oo-shutup10)
 - [Security](#security)
@@ -37,9 +40,6 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
     - [Get Distro IP Address](#get-distro-ip-address)
     - [Access WSL files](#access-wsl-files)
     - [Access Windows files from WSL](#access-windows-files-from-wsl)
-- [Network Configuration](#network-configuration)
-  - [Network Credentials](#network-credentials)
-  - [Hosts File Management](#hosts-file-management)
 - [Package Management](#package-management)
   - [WinGet Usage](#winget-usage)
     - [Search for Packages](#search-for-packages)
@@ -110,6 +110,29 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformati
 Disable universal time:
 ```powershell
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "RealTimeIsUniversal" -Type DWord -Value 0
+```
+
+### Network Configuration
+
+#### Network Credentials
+Configure persistent secure credentials:
+```powershell
+$SmbAddresses = @("192.168.50.123", "NetworkStorage")
+$cred = Get-Credential -Message "Enter credentials for NAS SMB access"
+foreach ($address in $SmbAddresses) {
+    # Remove leading backslashes for cmdkey.exe
+    $cmdkeyTarget = $address -replace "^\\\\+", ""
+    # Remove existing Windows Credential
+    cmdkey.exe /delete:$cmdkeyTarget | Out-Null
+    # Add new Windows Credential
+    cmdkey.exe /add:$cmdkeyTarget /user:$($cred.UserName) /pass:$($cred.GetNetworkCredential().Password)
+}
+```
+
+#### Hosts File Management
+Open the hosts file in Visual Studio Code for easy editing:
+```powershell
+code %SystemRoot%\System32\drivers\etc\hosts
 ```
 
 ## Privacy
@@ -315,29 +338,6 @@ cd /mnt/c/
 > [!IMPORTANT]
 > - File permissions and ownership in Windows drives are set to `drwxrwxrwx` (`777`) by default
 > - For better performance with Windows files, consider storing project files within the WSL filesystem
-
-## Network Configuration
-
-### Network Credentials
-Configure persistent secure credentials:
-```powershell
-$SmbAddresses = @("192.168.50.123", "NetworkStorage")
-$cred = Get-Credential -Message "Enter credentials for NAS SMB access"
-foreach ($address in $SmbAddresses) {
-    # Remove leading backslashes for cmdkey.exe
-    $cmdkeyTarget = $address -replace "^\\\\+", ""
-    # Remove existing Windows Credential
-    cmdkey.exe /delete:$cmdkeyTarget | Out-Null
-    # Add new Windows Credential
-    cmdkey.exe /add:$cmdkeyTarget /user:$($cred.UserName) /pass:$($cred.GetNetworkCredential().Password)
-}
-```
-
-### Hosts File Management
-Open the hosts file in Visual Studio Code for easy editing:
-```powershell
-code %SystemRoot%\System32\drivers\etc\hosts
-```
 
 ## Package Management
 
