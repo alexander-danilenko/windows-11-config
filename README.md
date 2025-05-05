@@ -1,6 +1,6 @@
 <h1 align="center">Windows 11 Configuration Guide</h1>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Windows_10x_Icon.png" width="30%" align="right" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Windows_10x_Icon.png" width="35%" align="right" />
 
 A comprehensive guide for configuring and optimizing Windows 11 for development, productivity, and security. This guide covers essential system settings, development environment setup, network configuration, and package management.
 
@@ -55,15 +55,15 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
 
 ### Windows Activation
 
-- **What**: Activates Windows 11 using official scripts.
+- **What**: Activates Windows 11 using open-source scripts.
 - **Why**: Activation is required to unlock all features and ensure the OS is genuine and secure.
-- **How**: Use the Microsoft Activation Scripts from the massgravel repository by following the provided link. This method is reliable and secure. Always use official sources to avoid malware. Activation ensures compliance and access to updates.
+- **How**: Use the Activation Scripts from the [massgrave repository](https://github.com/massgravel/Microsoft-Activation-Scripts). This method is reliable and secure.
 
-<img src="https://massgrave.dev/img/logo_small.png" alt="MAS Logo" align="right">
+<img src="https://massgrave.dev/img/logo_small.png" align="right" width="25%">
 
-For Windows activation, use the official Microsoft Activation Scripts from the massgravel repository. This provides a reliable and secure method to activate Windows 11:
+For Windows activation, use the Activation Scripts from the [massgrave repository](https://github.com/massgravel/Microsoft-Activation-Scripts). This provides a reliable and secure method to activate Windows:
 
-> https://massgrave.dev/
+https://massgrave.dev/
 
 > [!CAUTION]
 > Even though the activation script is open source, you should always review the script yourself before running it. Never blindly execute scripts from the internet, and ensure you understand what the script will do to your system.
@@ -138,6 +138,8 @@ code %SystemRoot%\System32\drivers\etc\hosts
 ## Privacy
 
 ### O&O ShutUp10++
+
+<img src="https://www.oo-software.com/oocontent/uploads/tour/oosu10-de/pack-tb.png" align="right" width="25%">
 
 - **What**: A tool to manage and enhance Windows 11 privacy settings.
 - **Why**: Windows 11 collects telemetry and data by default; this tool helps users regain control over their privacy.
