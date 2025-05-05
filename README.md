@@ -14,6 +14,8 @@ A comprehensive guide for configuring and optimizing Windows 11 for development,
   - [Time settings](#time-settings)
 - [Security](#security)
   - [PowerShell Security](#powershell-security)
+  - [Privacy](#privacy)
+    - [O\&O ShutUp10++](#oo-shutup10)
 - [Development Environment](#development-environment)
   - [Visual Studio Code](#visual-studio-code)
     - [Installation](#installation)
@@ -107,6 +109,22 @@ Set-ExecutionPolicy RemoteSigned
 Update-Help -ErrorAction Ignore
 ```
 
+### Privacy
+
+#### O&O ShutUp10++
+O&O ShutUp10+ is a free, portable tool that gives you full control over Windows 11 privacy settings. It allows you to quickly disable telemetry, data collection, and other privacy-intrusive features with a single click.
+
+- **Website:** [O&O ShutUp10++](https://www.oo-software.com/en/shutup10)
+- **No installation required:** The tool is portable and does not need to be installed.
+- **Recommended usage:**
+  1. Download and run the tool from the official website.
+  2. Review the list of privacy settings and apply recommended or custom configurations.
+
+> [!WARNING]
+> It is **HIGHLY recommended** to create a system restore point before applying any changes with O&O ShutUp10+. This allows you to easily revert your system in case any modifications cause issues or unwanted behavior.
+
+> [!IMPORTANT]
+> Some privacy settings may affect the functionality of certain Windows features or apps. Review each option and use the built-in recommendations for best results.
 
 ## Development Environment
 
