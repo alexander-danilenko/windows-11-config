@@ -1,0 +1,12 @@
+---
+description: What-Why-How template
+globs: *.md
+alwaysApply: false
+---
+Describe the topic using the following template:
+
+```
+- **What**: <shortly describes the topic; 1 sentence>
+- **Why**: <describes why this topic is a thing, why it is needed; 1-2 sentence>
+- **How**: <key points; 3-4 sentences>
+```
